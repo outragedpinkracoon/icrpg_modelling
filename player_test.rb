@@ -2,6 +2,7 @@
 
 require_relative 'test_helper'
 require_relative 'player'
+require_relative 'attributes'
 
 # Tests the Player class
 class PlayerTest < Minitest::Test
