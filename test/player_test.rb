@@ -55,7 +55,9 @@ class PlayerTest < Minitest::Test
 
   def test_player_attributes
     @attributes.each do |attribute, expected_value|
-      assert_equal expected_value, @player.attributes.send(attribute), "Expected #{attribute} to be #{expected_value}"
+      assert_equal expected_value,
+                   @player.attributes.send(attribute),
+                   "Expected #{attribute} to be #{expected_value}"
     end
   end
 end
