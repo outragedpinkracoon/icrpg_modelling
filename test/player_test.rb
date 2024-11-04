@@ -19,33 +19,38 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_has_name
-    assert_equal @player.name, 'fred'
+    assert_equal 'fred', @player.name
     @player.name = 'bert'
-    assert_equal @player.name, 'bert'
+
+    assert_equal 'bert', @player.name
   end
 
   def test_player_has_world
-    assert_equal @player.world, 'deans'
+    assert_equal 'deans', @player.world
     @player.world = 'livi'
-    assert_equal @player.world, 'livi'
+
+    assert_equal 'livi', @player.world
   end
 
   def test_player_has_life_form
-    assert_equal @player.life_form, 'human'
+    assert_equal 'human', @player.life_form
     @player.life_form = 'elf'
-    assert_equal @player.life_form, 'elf'
+
+    assert_equal 'elf', @player.life_form
   end
 
   def test_player_has_type
-    assert_equal @player.type, 'gunslinger'
+    assert_equal 'gunslinger', @player.type
     @player.type = 'wizard'
-    assert_equal @player.type, 'wizard'
+
+    assert_equal 'wizard', @player.type
   end
 
   def test_player_has_story
-    assert_equal @player.story, 'this is my story'
+    assert_equal 'this is my story', @player.story
     @player.story = 'this is my new story'
-    assert_equal @player.story, 'this is my new story'
+
+    assert_equal 'this is my new story', @player.story
   end
 
   def test_player_attributes

@@ -14,3 +14,6 @@ require:
 
 Metrics/ParameterLists:
   Enabled: false
+
+AllCops:
+  NewCops: enable
