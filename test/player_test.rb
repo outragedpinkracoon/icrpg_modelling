@@ -4,13 +4,15 @@ require_relative 'test_helper'
 require_relative '../lib/player'
 require_relative '../lib/attributes'
 
+# rubocop:disable Metrics/MethodLength
+
 # Tests the Player class
 class PlayerTest < Minitest::Test
   def setup
     @player = Player.new(
-      name: 'fred', 
-      world: 'deans', 
-      life_form: 'human', 
+      name: 'fred',
+      world: 'deans',
+      life_form: 'human',
       type: 'gunslinger',
       story: 'this is my story',
       attributes: Attributes.new(
@@ -55,11 +57,12 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_attributes
-    assert_equal @player.attributes.str, 1
-    assert_equal @player.attributes.dex, 0
-    assert_equal @player.attributes.con, 2
-    assert_equal @player.attributes.int, 3
-    assert_equal @player.attributes.wis, 0
-    assert_equal @player.attributes.cha, 0
+    expected_attributes = { str: 1, dex: 0, con: 2, int: 3, wis: 0, cha: 0 }
+
+    expected_attributes.each do |attribute, expected_value|
+      assert_equal expected_value, @player.attributes.send(attribute), "Expected #{attribute} to be #{expected_value}"
+    end
   end
 end
+
+# rubocop:enable Metrics/MethodLength

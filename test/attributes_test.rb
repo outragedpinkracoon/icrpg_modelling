@@ -3,9 +3,10 @@
 require_relative 'test_helper'
 require_relative '../lib/attributes'
 
+# rubocop:disable Metrics/MethodLength
+
 # Tests the Player class
 class AttributesTest < Minitest::Test
-
   def test_valid_attributes
     @attributes = Attributes.new(
       str: 1,
@@ -36,3 +37,5 @@ class AttributesTest < Minitest::Test
     end
   end
 end
+
+# rubocop:enable Metrics/MethodLength
