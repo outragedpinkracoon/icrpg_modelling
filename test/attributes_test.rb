@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'test_helper'
-require_relative 'attributes'
+require_relative '../lib/attributes'
 
 # Tests the Player class
 class AttributesTest < Minitest::Test

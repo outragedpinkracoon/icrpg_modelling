@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'test_helper'
-require_relative 'player'
-require_relative 'attributes'
+require_relative '../lib/player'
+require_relative '../lib/attributes'
 
 # Tests the Player class
 class PlayerTest < Minitest::Test
