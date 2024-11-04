@@ -17,3 +17,8 @@ Metrics/ParameterLists:
 
 AllCops:
   NewCops: enable
+
+Metrics/MethodLength:
+  Enabled: true
+  Exclude:
+    - 'test/**/*_test.rb'

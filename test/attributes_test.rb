@@ -16,7 +16,7 @@ class AttributesTest < Minitest::Test
   end
 
   def test_attributes_too_low
-    assert_raises(Attributes::StatsError) do
+    error = assert_raises(Attributes::StatsError) do
       @attributes = Attributes.new(
         str: 1,
         dex: 0,
@@ -26,5 +26,21 @@ class AttributesTest < Minitest::Test
         cha: 0
       )
     end
+    assert_equal 'Stats are too low - must add to 6', error.message
+  end
+
+  def test_attributes_too_high
+    error = assert_raises(Attributes::StatsError) do
+      @attributes = Attributes.new(
+        str: 1,
+        dex: 0,
+        con: 0,
+        int: 3,
+        wis: 3,
+        cha: 0
+      )
+    end
+
+    assert_equal 'Stats are too high - must add to 6', error.message
   end
 end
