@@ -2,7 +2,7 @@
 
 require_relative 'test_helper'
 require_relative '../lib/player'
-require_relative '../lib/attributes'
+require_relative '../lib/player_attributes'
 
 # Tests the Player class
 class PlayerTest < Minitest::Test
@@ -14,7 +14,7 @@ class PlayerTest < Minitest::Test
       life_form: 'human',
       type: 'gunslinger',
       story: 'this is my story',
-      attributes: Attributes.new(**@attributes)
+      attributes: PlayerAttributes.new(**@attributes)
     )
   end
 

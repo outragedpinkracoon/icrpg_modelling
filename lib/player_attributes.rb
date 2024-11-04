@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # The stats for a given player
-class Attributes
+class PlayerAttributes
   class StatsError < StandardError; end
 
   attr_reader :str, :dex, :con, :int, :wis, :cha
