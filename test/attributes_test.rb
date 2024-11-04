@@ -16,12 +16,11 @@ class AttributesTest < Minitest::Test
       wis: 0,
       cha: 0
     )
-    assert_equal @attributes.str, 1
-    assert_equal @attributes.dex, 0
-    assert_equal @attributes.con, 2
-    assert_equal @attributes.int, 3
-    assert_equal @attributes.wis, 0
-    assert_equal @attributes.cha, 0
+    expected_attributes = { str: 1, dex: 0, con: 2, int: 3, wis: 0, cha: 0 }
+
+    expected_attributes.each do |attribute, expected_value|
+      assert_equal expected_value, @attributes.send(attribute), "Expected #{attribute} to be #{expected_value}"
+    end
   end
 
   def test_attributes_too_low
