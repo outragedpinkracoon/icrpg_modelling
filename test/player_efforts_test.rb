@@ -5,19 +5,27 @@ require_relative '../lib/player_efforts'
 
 # Tests the PlayerEfforts class
 class PlayerEffortsTest < Minitest::Test
-  def test_efforts
+  def setup
     @efforts = PlayerEfforts.new
+  end
 
-    expected_values = {
-      basic: 4,
-      weapons_and_tools: 6,
-      guns: 8,
-      energy_and_magic: 10,
-      ultimate: 12
-    }
+  def test_basic_effort
+    assert_equal(4, @efforts.basic)
+  end
 
-    expected_values.each do |effort_type, score|
-      assert_equal(score, @efforts.send(effort_type))
-    end
+  def test_weapons_and_tools_effort
+    assert_equal(6, @efforts.weapons_and_tools)
+  end
+
+  def test_guns_effort
+    assert_equal(8, @efforts.guns)
+  end
+
+  def test_energy_and_magic_effort
+    assert_equal(10, @efforts.energy_and_magic)
+  end
+
+  def test_ultimate_effort
+    assert_equal(12, @efforts.ultimate)
   end
 end

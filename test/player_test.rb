@@ -53,11 +53,8 @@ class PlayerTest < Minitest::Test
     assert_equal 'this is my new story', @player.story
   end
 
+  # No need to test them all - this is done in attributes tests
   def test_player_attributes
-    @attributes.each do |attribute, expected_value|
-      assert_equal expected_value,
-                   @player.attributes.send(attribute),
-                   "Expected #{attribute} to be #{expected_value}"
-    end
+    assert_equal(1, @player.attributes.str)
   end
 end
