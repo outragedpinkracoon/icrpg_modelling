@@ -7,7 +7,6 @@ require_relative '../lib/player_attributes'
 class PlayerAttributesTest < Minitest::Test
   def test_valid_attributes
     expected_attributes = { str: 1, dex: 0, con: 2, int: 3, wis: 0, cha: 0 }
-
     @attributes = PlayerAttributes.new(**expected_attributes)
 
     expected_attributes.each do |attribute, expected_value|
