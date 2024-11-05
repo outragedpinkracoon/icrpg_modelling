@@ -13,18 +13,18 @@ class Player
     @story = story
     @attributes = attributes
     @efforts = PlayerEfforts.new
-    @has_hero_coin = false
+    @hero_coin = false
   end
 
   def give_hero_coin
-    @has_hero_coin = true
+    @hero_coin = true
   end
 
-  def use_hero_coin
-    @has_hero_coin = false
+  def remove_hero_coin
+    @hero_coin = false
   end
 
   def hero_coin?
-    @has_hero_coin
+    @hero_coin
   end
 end

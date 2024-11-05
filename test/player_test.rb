@@ -63,7 +63,7 @@ class PlayerTest < Minitest::Test
     @player.give_hero_coin
 
     assert_predicate(@player, :hero_coin?)
-    @player.use_hero_coin
+    @player.remove_hero_coin
 
     refute_predicate(@player, :hero_coin?)
   end
