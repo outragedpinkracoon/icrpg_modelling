@@ -67,4 +67,8 @@ class PlayerTest < Minitest::Test
 
     refute_predicate(@player, :hero_coin?)
   end
+
+  def test_player_efforts
+    assert_equal(4, @player.efforts.basic)
+  end
 end

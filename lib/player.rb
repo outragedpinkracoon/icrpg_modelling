@@ -3,7 +3,7 @@
 # Represents a Player in the game
 class Player
   attr_accessor :name, :world, :life_form, :type, :story
-  attr_reader :attributes
+  attr_reader :attributes, :efforts
 
   def initialize(name:, world:, life_form:, type:, story:, attributes:)
     @name = name
@@ -12,6 +12,7 @@ class Player
     @type = type
     @story = story
     @attributes = attributes
+    @efforts = PlayerEfforts.new
     @has_hero_coin = false
   end
 
