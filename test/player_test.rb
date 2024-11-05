@@ -57,4 +57,14 @@ class PlayerTest < Minitest::Test
   def test_player_attributes
     assert_equal(1, @player.attributes.str)
   end
+
+  def test_hero_coin
+    refute_predicate(@player, :hero_coin?)
+    @player.give_hero_coin
+
+    assert_predicate(@player, :hero_coin?)
+    @player.use_hero_coin
+
+    refute_predicate(@player, :hero_coin?)
+  end
 end

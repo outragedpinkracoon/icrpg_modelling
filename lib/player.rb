@@ -12,5 +12,18 @@ class Player
     @type = type
     @story = story
     @attributes = attributes
+    @has_hero_coin = false
+  end
+
+  def give_hero_coin
+    @has_hero_coin = true
+  end
+
+  def use_hero_coin
+    @has_hero_coin = false
+  end
+
+  def hero_coin?
+    @has_hero_coin
   end
 end
