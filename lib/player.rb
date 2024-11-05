@@ -2,6 +2,17 @@
 
 # Represents a Player in the game
 class Player
+  module TYPE
+    SHADOW = :shadow
+    BARD = :bard
+    HUNTER = :hunter
+    WARRIOR = :warrior
+    MAGE = :mage
+    PRIEST = :priest
+
+    ALL = [SHADOW, BARD, HUNTER, WARRIOR, MAGE, PRIEST].freeze
+  end
+
   attr_accessor :name, :world, :life_form, :type, :story
   attr_reader :attributes, :efforts
 

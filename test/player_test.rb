@@ -12,7 +12,7 @@ class PlayerTest < Minitest::Test
       name: 'fred',
       world: 'deans',
       life_form: 'human',
-      type: 'gunslinger',
+      type: Player::TYPE::MAGE,
       story: 'this is my story',
       attributes: PlayerAttributes.new(**@attributes)
     )
@@ -40,10 +40,10 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_has_type
-    assert_equal 'gunslinger', @player.type
-    @player.type = 'wizard'
+    assert_equal Player::TYPE::MAGE, @player.type
+    @player.type = Player::TYPE::WARRIOR
 
-    assert_equal 'wizard', @player.type
+    assert_equal Player::TYPE::WARRIOR, @player.type
   end
 
   def test_player_has_story
