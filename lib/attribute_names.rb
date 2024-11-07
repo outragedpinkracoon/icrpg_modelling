@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module BaseAttributeNames
+module AttributeNames
   STR = :str
   DEX = :dex
   CON = :con

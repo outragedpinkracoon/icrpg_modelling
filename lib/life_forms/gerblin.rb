@@ -4,7 +4,7 @@ require_relative 'life_form'
 
 class Gerblin < LifeForm
   def attribute_mods
-    { BaseAttributeNames::DEX => 1 }
+    { AttributeNames::DEX => 1 }
   end
 
   def effort_mods

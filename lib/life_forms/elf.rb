@@ -5,8 +5,8 @@ require_relative 'life_form'
 class Elf < LifeForm
   def attribute_mods
     {
-      BaseAttributeNames::DEX => 1,
-      BaseAttributeNames::CHA => 1
+      AttributeNames::DEX => 1,
+      AttributeNames::CHA => 1
     }
   end
 end

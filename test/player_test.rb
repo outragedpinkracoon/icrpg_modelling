@@ -4,18 +4,18 @@ require_relative 'test_helper'
 require_relative '../lib/player'
 require_relative '../lib/player_types'
 require_relative '../lib/base_attributes'
-require_relative '../lib/base_attribute_names'
+require_relative '../lib/attribute_names'
 require_all('../lib/life_forms')
 
 class PlayerTest < Minitest::Test
   def setup
     @attributes = {
-      BaseAttributeNames::STR => 1,
-      BaseAttributeNames::DEX => 0,
-      BaseAttributeNames::CON => 2,
-      BaseAttributeNames::INT => 3,
-      BaseAttributeNames::WIS => 0,
-      BaseAttributeNames::CHA => 0
+      AttributeNames::STR => 1,
+      AttributeNames::DEX => 0,
+      AttributeNames::CON => 2,
+      AttributeNames::INT => 3,
+      AttributeNames::WIS => 0,
+      AttributeNames::CHA => 0
     }
     @player = Player.new(
       name: 'fred',
