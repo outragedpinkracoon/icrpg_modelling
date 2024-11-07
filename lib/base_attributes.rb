@@ -2,16 +2,6 @@
 
 class BaseAttributes
   class StatsError < StandardError; end
-
-  module Names
-    STR = :str
-    DEX = :dex
-    CON = :con
-    CHA = :cha
-    INT = :int
-    WIS = :wis
-  end
-
   attr_reader :str, :dex, :con, :int, :wis, :cha
 
   MAX_POINTS = 6
