@@ -13,7 +13,7 @@ end
 # lib and test are autoloaded into the path, anything else
 # would need to go in t.libs!
 Rake::TestTask.new do |t|
-  t.test_files = FileList['test/*_test.rb']
+  t.test_files = FileList['test/**/*_test.rb']
 end
 
 task default: :test

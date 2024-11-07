@@ -11,9 +11,11 @@ class LifeForm
     ALL = [ELF, DWARF, HUMAN, GERBLIN, TORTON].freeze
   end
 
-  attr_reader :name
+  def attribute_mods
+    {}
+  end
 
-  def initialize(name:)
-    @name = name
+  def effort_mods
+    {}
   end
 end
