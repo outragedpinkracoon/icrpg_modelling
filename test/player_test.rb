@@ -3,6 +3,7 @@
 require_relative 'test_helper'
 require_relative '../lib/player'
 require_relative '../lib/player_attributes'
+require_all('../lib/life_forms')
 
 class PlayerTest < Minitest::Test
   def setup
@@ -10,7 +11,7 @@ class PlayerTest < Minitest::Test
     @player = Player.new(
       name: 'fred',
       world: 'deans',
-      life_form: 'human',
+      life_form: Human.new,
       type: Player::TYPE::MAGE,
       story: 'this is my story',
       attributes: PlayerAttributes.new(**@attributes)
@@ -32,10 +33,10 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_has_life_form
-    assert_equal 'human', @player.life_form
-    @player.life_form = 'elf'
+    assert_instance_of Human, @player.life_form
+    @player.life_form = Elf.new
 
-    assert_equal 'elf', @player.life_form
+    assert_instance_of Elf, @player.life_form
   end
 
   def test_player_has_type

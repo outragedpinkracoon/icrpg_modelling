@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class Dwarf
+require_relative 'life_form'
+
+class Dwarf < LifeForm
   def attribute_mods
     {
       PlayerAttributes::Names::STR => 1,

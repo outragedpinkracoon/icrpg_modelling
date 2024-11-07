@@ -4,3 +4,7 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+
+def require_all(path)
+  Dir[File.join(__dir__, path, '*.rb')].each { |file| require_relative file }
+end
