@@ -2,6 +2,7 @@
 
 require_relative 'test_helper'
 require_relative '../lib/player'
+require_relative '../lib/player_types'
 require_relative '../lib/base_attributes'
 require_all('../lib/life_forms')
 
@@ -12,7 +13,7 @@ class PlayerTest < Minitest::Test
       name: 'fred',
       world: 'deans',
       life_form: Human.new,
-      type: Player::TYPE::MAGE,
+      type: PlayerTypes::MAGE,
       story: 'this is my story',
       attributes: BaseAttributes.new(**@attributes)
     )
@@ -34,16 +35,20 @@ class PlayerTest < Minitest::Test
 
   def test_player_has_life_form
     assert_instance_of Human, @player.life_form
-    @player.life_form = Elf.new
+  end
 
-    assert_instance_of Elf, @player.life_form
+  def test_player_cannot_change_life_form
+    error = assert_raises(Player::PlayerStateError) do
+      @player.life_form = Elf.new
+    end
+    assert_equal "Cannot change a players's life form, must create a new player", error.message
   end
 
   def test_player_has_type
-    assert_equal Player::TYPE::MAGE, @player.type
-    @player.type = Player::TYPE::WARRIOR
+    assert_equal PlayerTypes::MAGE, @player.type
+    @player.type = PlayerTypes::WARRIOR
 
-    assert_equal Player::TYPE::WARRIOR, @player.type
+    assert_equal PlayerTypes::WARRIOR, @player.type
   end
 
   def test_player_has_story

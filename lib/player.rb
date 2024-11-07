@@ -3,19 +3,9 @@
 require_relative 'base_efforts'
 
 class Player
-  module TYPE
-    SHADOW = :shadow
-    BARD = :bard
-    HUNTER = :hunter
-    WARRIOR = :warrior
-    MAGE = :mage
-    PRIEST = :priest
-
-    ALL = [SHADOW, BARD, HUNTER, WARRIOR, MAGE, PRIEST].freeze
-  end
-
-  attr_accessor :name, :world, :life_form, :type, :story
-  attr_reader :attributes, :efforts
+  class PlayerStateError < StandardError; end
+  attr_accessor :name, :world, :type, :story
+  attr_reader :attributes, :efforts, :life_form
 
   def initialize(name:, world:, life_form:, type:, story:, attributes:)
     @name = name
@@ -30,6 +20,10 @@ class Player
 
   def give_hero_coin
     @hero_coin = true
+  end
+
+  def life_form=(_)
+    raise PlayerStateError, "Cannot change a players's life form, must create a new player"
   end
 
   def remove_hero_coin
