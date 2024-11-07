@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PlayerAttributes
+class BaseAttributes
   class StatsError < StandardError; end
 
   module Names

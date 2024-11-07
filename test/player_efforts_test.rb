@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require_relative 'test_helper'
-require_relative '../lib/player_efforts'
+require_relative '../lib/base_efforts'
 
-class PlayerEffortsTest < Minitest::Test
+class BaseEffortsTest < Minitest::Test
   def setup
-    @efforts = PlayerEfforts.new
+    @efforts = BaseEfforts.new
   end
 
   def test_basic_effort

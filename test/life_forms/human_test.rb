@@ -2,13 +2,13 @@
 
 require_relative '../test_helper'
 require_relative '../../lib/life_forms/human'
-require_relative '../../lib/player_attributes'
-require_relative '../../lib/player_efforts'
+require_relative '../../lib/base_attributes'
+require_relative '../../lib/base_efforts'
 
 class HumanTest < Minitest::Test
   def test_modifiers
     human = Human.new
 
-    assert_equal({ PlayerAttributes::Names::INT => 1, PlayerAttributes::Names::CHA => 1 }, human.attribute_mods)
+    assert_equal({ BaseAttributes::Names::INT => 1, BaseAttributes::Names::CHA => 1 }, human.attribute_mods)
   end
 end

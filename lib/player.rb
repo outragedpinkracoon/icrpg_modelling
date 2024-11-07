@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'base_efforts'
+
 class Player
   module TYPE
     SHADOW = :shadow
@@ -22,7 +24,7 @@ class Player
     @type = type
     @story = story
     @attributes = attributes
-    @efforts = PlayerEfforts.new
+    @efforts = BaseEfforts.new
     @hero_coin = false
   end
 

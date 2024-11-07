@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PlayerEfforts
+class BaseEfforts
   module Names
     BASIC = :basic
     WEAPONS_AND_TOOLS = :weapons_and_tools
