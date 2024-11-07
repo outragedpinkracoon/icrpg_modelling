@@ -33,15 +33,11 @@ class PlayerTest < Minitest::Test
     assert_equal 'livi', @player.world
   end
 
-  def test_player_has_life_form
+  def test_player_life_form
     assert_instance_of Human, @player.life_form
-  end
+    @player.life_form = Elf.new
 
-  def test_player_cannot_change_life_form
-    error = assert_raises(Player::PlayerStateError) do
-      @player.life_form = Elf.new
-    end
-    assert_equal "Cannot change a players's life form, must create a new player", error.message
+    assert_instance_of Elf, @player.life_form
   end
 
   def test_player_has_type

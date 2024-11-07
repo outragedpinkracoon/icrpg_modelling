@@ -3,9 +3,8 @@
 require_relative 'base_efforts'
 
 class Player
-  class PlayerStateError < StandardError; end
-  attr_accessor :name, :world, :type, :story
-  attr_reader :attributes, :efforts, :life_form
+  attr_accessor :name, :world, :type, :story, :life_form
+  attr_reader :attributes, :efforts
 
   def initialize(name:, world:, life_form:, type:, story:, attributes:)
     @name = name
@@ -20,10 +19,6 @@ class Player
 
   def give_hero_coin
     @hero_coin = true
-  end
-
-  def life_form=(_)
-    raise PlayerStateError, "Cannot change a players's life form, must create a new player"
   end
 
   def remove_hero_coin
