@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# The efforts for a given player
 class PlayerEfforts
   attr_reader :basic, :weapons_and_tools, :guns, :energy_and_magic, :ultimate
 

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# The stats for a given player
 class PlayerAttributes
   class StatsError < StandardError; end
 

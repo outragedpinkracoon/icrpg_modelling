@@ -3,7 +3,6 @@
 require_relative 'test_helper'
 require_relative '../lib/player_efforts'
 
-# Tests the PlayerEfforts class
 class PlayerEffortsTest < Minitest::Test
   def setup
     @efforts = PlayerEfforts.new

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Represents a Player in the game
 class Player
   module TYPE
     SHADOW = :shadow

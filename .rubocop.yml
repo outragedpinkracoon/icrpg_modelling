@@ -12,6 +12,9 @@
 require:
   - rubocop-minitest
 
+Style/Documentation:
+  Enabled: false
+
 Metrics/ParameterLists:
   Enabled: false
 

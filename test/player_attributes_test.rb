@@ -3,7 +3,6 @@
 require_relative 'test_helper'
 require_relative '../lib/player_attributes'
 
-# Tests the Player class
 class PlayerAttributesTest < Minitest::Test
   def test_valid_attributes
     expected_attributes = { str: 1, dex: 0, con: 2, int: 3, wis: 0, cha: 0 }
