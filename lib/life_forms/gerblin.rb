@@ -8,6 +8,6 @@ class Gerblin < LifeForm
   end
 
   def effort_mods
-    { BaseEfforts::Names::GUNS => 1 }
+    { EffortNames::GUNS => 1 }
   end
 end
