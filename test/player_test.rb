@@ -7,6 +7,7 @@ require_relative '../lib/base_attributes'
 require_relative '../lib/attribute_names'
 require_all('../lib/life_forms')
 
+# rubocop:disable Metrics/ClassLength
 class PlayerTest < Minitest::Test
   def setup
     @attributes = {
@@ -106,12 +107,18 @@ class PlayerTest < Minitest::Test
   def test_player_can_retrieve_all_calculated_attributes
     @player.life_form = Human.new
 
-    assert_equal(4, @player.int)
-    assert_equal(1, @player.cha)
-    assert_equal(0, @player.dex)
-    assert_equal(2, @player.con)
-    assert_equal(1, @player.str)
-    assert_equal(0, @player.wis)
+    expected_attributes = {
+      AttributeNames::INT => 4,
+      AttributeNames::CHA => 1,
+      AttributeNames::DEX => 0,
+      AttributeNames::CON => 2,
+      AttributeNames::STR => 1,
+      AttributeNames::WIS => 0
+    }
+
+    expected_attributes.each do |attribute, value|
+      assert_equal(value, @player.send(attribute))
+    end
   end
 
   def test_hero_coin
@@ -125,6 +132,35 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_efforts
-    assert_equal(4, @player.efforts.basic)
+    assert_equal(4, @player.base_efforts.basic)
+  end
+
+  def test_player_has_gerblin_plus_base_efforts
+    @player.life_form = Gerblin.new
+
+    assert_equal(9, @player.efforts[EffortNames::GUNS])
+  end
+
+  def test_player_has_torton_plus_base_efforts
+    @player.life_form = Torton.new
+
+    assert_equal(11, @player.efforts[EffortNames::ENERGY_AND_MAGIC])
+  end
+
+  def test_player_can_retrieve_all_calculated_efforts
+    @player.life_form = Torton.new
+
+    expected_efforts = {
+      EffortNames::BASIC => 4,
+      EffortNames::WEAPONS_AND_TOOLS => 6,
+      EffortNames::GUNS => 8,
+      EffortNames::ENERGY_AND_MAGIC => 11,
+      EffortNames::ULTIMATE => 12
+    }
+
+    expected_efforts.each do |effort, value|
+      assert_equal(value, @player.efforts[effort])
+    end
   end
 end
+# rubocop:enable Metrics/ClassLength
