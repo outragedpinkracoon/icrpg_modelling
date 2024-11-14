@@ -67,7 +67,7 @@ class Player
   private
 
   def calculate_attribute(attribute_name)
-    base_attributes.send(attribute_name) + (@life_form.attribute_mods[attribute_name] || 0)
+    @base_attributes.send(attribute_name) + (@life_form.attribute_mods[attribute_name] || 0)
   end
 
   def calculate_effort(effort_name)
