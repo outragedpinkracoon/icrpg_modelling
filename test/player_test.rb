@@ -17,10 +17,13 @@ class PlayerTest < Minitest::Test
       AttributeNames::WIS => 0,
       AttributeNames::CHA => 0
     }
+
+    @life_form = Human.new
+
     @player = Player.new(
       name: 'fred',
       world: 'deans',
-      life_form: Human.new,
+      life_form: @life_form,
       type: PlayerTypes::MAGE,
       story: 'this is my story',
       base_attributes: BaseAttributes.new(**@attributes)
@@ -65,6 +68,50 @@ class PlayerTest < Minitest::Test
   # No need to test them all - this is done in attributes tests
   def test_player_has_attributes
     assert_equal(1, @player.base_attributes.str)
+  end
+
+  def test_player_has_dwarf_plus_base_attributes
+    @player.life_form = Dwarf.new
+
+    assert_equal(2, @player.str)
+    assert_equal(3, @player.con)
+  end
+
+  def test_player_has_elf_plus_base_attributes
+    @player.life_form = Elf.new
+
+    assert_equal(1, @player.dex)
+    assert_equal(1, @player.cha)
+  end
+
+  def test_player_has_gerblin_plus_base_attributes
+    @player.life_form = Gerblin.new
+
+    assert_equal(1, @player.dex)
+  end
+
+  def test_player_has_human_plus_base_attributes
+    @player.life_form = Human.new
+
+    assert_equal(4, @player.int)
+    assert_equal(1, @player.cha)
+  end
+
+  def test_player_has_torton_plus_base_attributes
+    @player.life_form = Torton.new
+
+    assert_equal(3, @player.con)
+  end
+
+  def test_player_can_retrieve_all_calculated_attributes
+    @player.life_form = Human.new
+
+    assert_equal(4, @player.int)
+    assert_equal(1, @player.cha)
+    assert_equal(0, @player.dex)
+    assert_equal(2, @player.con)
+    assert_equal(1, @player.str)
+    assert_equal(0, @player.wis)
   end
 
   def test_hero_coin

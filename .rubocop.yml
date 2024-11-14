@@ -15,6 +15,9 @@ require:
 Style/Documentation:
   Enabled: false
 
+Minitest/MultipleAssertions:
+  Enabled: false
+
 Metrics/ParameterLists:
   Enabled: false
 
