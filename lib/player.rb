@@ -30,26 +30,32 @@ class Player
   end
 
   def str
-    base_attributes.str + (@life_form.attribute_mods[AttributeNames::STR] || 0)
+    calculate_attribute(AttributeNames::STR)
   end
 
   def con
-    base_attributes.con + (@life_form.attribute_mods[AttributeNames::CON] || 0)
+    calculate_attribute(AttributeNames::CON)
   end
 
   def dex
-    base_attributes.dex + (@life_form.attribute_mods[AttributeNames::DEX] || 0)
+    calculate_attribute(AttributeNames::DEX)
   end
 
   def cha
-    base_attributes.cha + (@life_form.attribute_mods[AttributeNames::CHA] || 0)
+    calculate_attribute(AttributeNames::CHA)
   end
 
   def int
-    base_attributes.int + (@life_form.attribute_mods[AttributeNames::INT] || 0)
+    calculate_attribute(AttributeNames::INT)
   end
 
   def wis
-    base_attributes.wis + (@life_form.attribute_mods[AttributeNames::WIS] || 0)
+    calculate_attribute(AttributeNames::WIS)
+  end
+
+  private
+
+  def calculate_attribute(attribute_name)
+    base_attributes.send(attribute_name) + (@life_form.attribute_mods[attribute_name] || 0)
   end
 end
