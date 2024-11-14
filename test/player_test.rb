@@ -23,7 +23,7 @@ class PlayerTest < Minitest::Test
       life_form: Human.new,
       type: PlayerTypes::MAGE,
       story: 'this is my story',
-      attributes: BaseAttributes.new(**@attributes)
+      base_attributes: BaseAttributes.new(**@attributes)
     )
   end
 
@@ -63,8 +63,8 @@ class PlayerTest < Minitest::Test
   end
 
   # No need to test them all - this is done in attributes tests
-  def test_player_attributes
-    assert_equal(1, @player.attributes.str)
+  def test_player_has_attributes
+    assert_equal(1, @player.base_attributes.str)
   end
 
   def test_hero_coin

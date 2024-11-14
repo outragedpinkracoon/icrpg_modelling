@@ -4,15 +4,15 @@ require_relative 'base_efforts'
 
 class Player
   attr_accessor :name, :world, :type, :story, :life_form
-  attr_reader :attributes, :efforts
+  attr_reader :base_attributes, :efforts
 
-  def initialize(name:, world:, life_form:, type:, story:, attributes:)
+  def initialize(name:, world:, life_form:, type:, story:, base_attributes:)
     @name = name
     @world = world
     @life_form = life_form
     @type = type
     @story = story
-    @attributes = attributes
+    @base_attributes = base_attributes
     @efforts = BaseEfforts.new
     @hero_coin = false
   end
