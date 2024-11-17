@@ -27,7 +27,7 @@ class PlayerTest < Minitest::Test
       life_form: @life_form,
       type: PlayerTypes::MAGE,
       story: 'this is my story',
-      base_attributes: BaseAttributes.new(**@attributes)
+      base_attributes: @attributes
     )
   end
 
@@ -68,7 +68,7 @@ class PlayerTest < Minitest::Test
 
   # No need to test them all - this is done in attributes tests
   def test_player_has_attributes
-    assert_equal(1, @player.base_attributes.str)
+    assert_equal(1, @player.base_attributes[AttributeNames::STR])
   end
 
   def test_player_has_dwarf_plus_base_attributes
