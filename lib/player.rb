@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'base_efforts'
 require_relative 'effort_names'
 
 class Player

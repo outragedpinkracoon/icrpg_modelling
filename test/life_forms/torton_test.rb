@@ -2,9 +2,7 @@
 
 require_relative '../test_helper'
 require_relative '../../lib/life_forms/torton'
-require_relative '../../lib/base_attributes'
 require_relative '../../lib/attribute_names'
-require_relative '../../lib/base_efforts'
 require_relative '../../lib/effort_names'
 
 class TortonTest < Minitest::Test

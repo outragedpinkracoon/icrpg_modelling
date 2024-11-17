@@ -2,7 +2,6 @@
 
 require_relative '../test_helper'
 require_relative '../../lib/life_forms/dwarf'
-require_relative '../../lib/base_attributes'
 require_relative '../../lib/attribute_names'
 
 class DwarfTest < Minitest::Test
