@@ -66,42 +66,37 @@ class PlayerTest < Minitest::Test
     assert_equal 'this is my new story', @player.story
   end
 
-  # No need to test them all - this is done in attributes tests
-  def test_player_has_attributes
-    assert_equal(1, @player.base_attributes[AttributeNames::STR])
-  end
-
   def test_player_has_dwarf_plus_base_attributes
     @player.life_form = Dwarf.new
 
-    assert_equal(2, @player.str)
-    assert_equal(3, @player.con)
+    assert_equal(2, @player.attributes[AttributeNames::STR])
+    assert_equal(3, @player.attributes[AttributeNames::CON])
   end
 
   def test_player_has_elf_plus_base_attributes
     @player.life_form = Elf.new
 
-    assert_equal(1, @player.dex)
-    assert_equal(1, @player.cha)
+    assert_equal(1, @player.attributes[AttributeNames::DEX])
+    assert_equal(1, @player.attributes[AttributeNames::CHA])
   end
 
   def test_player_has_gerblin_plus_base_attributes
     @player.life_form = Gerblin.new
 
-    assert_equal(1, @player.dex)
+    assert_equal(1, @player.attributes[AttributeNames::DEX])
   end
 
   def test_player_has_human_plus_base_attributes
     @player.life_form = Human.new
 
-    assert_equal(4, @player.int)
-    assert_equal(1, @player.cha)
+    assert_equal(4, @player.attributes[AttributeNames::INT])
+    assert_equal(1, @player.attributes[AttributeNames::CHA])
   end
 
   def test_player_has_torton_plus_base_attributes
     @player.life_form = Torton.new
 
-    assert_equal(3, @player.con)
+    assert_equal(3, @player.attributes[AttributeNames::CON])
   end
 
   def test_player_can_retrieve_all_calculated_attributes
@@ -117,7 +112,7 @@ class PlayerTest < Minitest::Test
     }
 
     expected_attributes.each do |attribute, value|
-      assert_equal(value, @player.send(attribute))
+      assert_equal(value, @player.attributes[attribute])
     end
   end
 

@@ -7,4 +7,6 @@ module AttributeNames
   CHA = :cha
   INT = :int
   WIS = :wis
+
+  ALL = [STR, DEX, CON, CHA, INT, WIS].freeze
 end

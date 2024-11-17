@@ -2,9 +2,9 @@
 
 require_relative 'effort_names'
 
+# TODO: add back test to check stats are not above 6!
 class Player
   attr_accessor :name, :world, :type, :story, :life_form
-  attr_reader :base_attributes
 
   def initialize(name:, world:, life_form:, type:, story:, base_attributes:)
     @name = name
@@ -39,41 +39,21 @@ class Player
     @hero_coin
   end
 
-  def str
-    calculate_attribute(AttributeNames::STR)
-  end
-
-  def con
-    calculate_attribute(AttributeNames::CON)
-  end
-
-  def dex
-    calculate_attribute(AttributeNames::DEX)
-  end
-
-  def cha
-    calculate_attribute(AttributeNames::CHA)
-  end
-
-  def int
-    calculate_attribute(AttributeNames::INT)
-  end
-
-  def wis
-    calculate_attribute(AttributeNames::WIS)
+  def attributes
+    AttributeNames::ALL.each_with_object({}) do |attribute_name, obj|
+      obj[attribute_name] = calculate_attribute(attribute_name)
+    end
   end
 
   def efforts
-    {
-      EffortNames::BASIC => calculate_effort(EffortNames::BASIC),
-      EffortNames::WEAPONS_AND_TOOLS => calculate_effort(EffortNames::WEAPONS_AND_TOOLS),
-      EffortNames::GUNS => calculate_effort(EffortNames::GUNS),
-      EffortNames::ENERGY_AND_MAGIC => calculate_effort(EffortNames::ENERGY_AND_MAGIC),
-      EffortNames::ULTIMATE => calculate_effort(EffortNames::ULTIMATE)
-    }
+    EffortNames::ALL.each_with_object({}) do |effort_name, obj|
+      obj[effort_name] = calculate_effort(effort_name)
+    end
   end
 
   private
+
+  attr_reader :base_attributes
 
   def calculate_attribute(attribute_name)
     base_attributes[attribute_name] + (@life_form.attribute_mods[attribute_name] || 0)
