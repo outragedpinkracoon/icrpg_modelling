@@ -5,8 +5,8 @@ require_relative 'life_form'
 class Dwarf < LifeForm
   def attribute_mods
     {
-      AttributeNames::STR => 1,
-      AttributeNames::CON => 1
+      Attributes::Names::STR => 1,
+      Attributes::Names::CON => 1
     }
   end
 end

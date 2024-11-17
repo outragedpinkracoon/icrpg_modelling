@@ -4,19 +4,19 @@ require_relative 'test_helper'
 require_relative '../lib/player'
 require_relative '../lib/player_types'
 require_relative '../lib/base_attributes'
-require_relative '../lib/attribute_names'
+require_relative '../lib/attributes'
 require_all('../lib/life_forms')
 
 # rubocop:disable Metrics/ClassLength
 class PlayerTest < Minitest::Test
   def setup
     @attributes = {
-      AttributeNames::STR => 1,
-      AttributeNames::DEX => 0,
-      AttributeNames::CON => 2,
-      AttributeNames::INT => 3,
-      AttributeNames::WIS => 0,
-      AttributeNames::CHA => 0
+      Attributes::Names::STR => 1,
+      Attributes::Names::DEX => 0,
+      Attributes::Names::CON => 2,
+      Attributes::Names::INT => 3,
+      Attributes::Names::WIS => 0,
+      Attributes::Names::CHA => 0
     }
 
     @life_form = Human.new
@@ -69,46 +69,46 @@ class PlayerTest < Minitest::Test
   def test_player_has_dwarf_plus_base_attributes
     @player.life_form = Dwarf.new
 
-    assert_equal(2, @player.attributes[AttributeNames::STR])
-    assert_equal(3, @player.attributes[AttributeNames::CON])
+    assert_equal(2, @player.attributes[Attributes::Names::STR])
+    assert_equal(3, @player.attributes[Attributes::Names::CON])
   end
 
   def test_player_has_elf_plus_base_attributes
     @player.life_form = Elf.new
 
-    assert_equal(1, @player.attributes[AttributeNames::DEX])
-    assert_equal(1, @player.attributes[AttributeNames::CHA])
+    assert_equal(1, @player.attributes[Attributes::Names::DEX])
+    assert_equal(1, @player.attributes[Attributes::Names::CHA])
   end
 
   def test_player_has_gerblin_plus_base_attributes
     @player.life_form = Gerblin.new
 
-    assert_equal(1, @player.attributes[AttributeNames::DEX])
+    assert_equal(1, @player.attributes[Attributes::Names::DEX])
   end
 
   def test_player_has_human_plus_base_attributes
     @player.life_form = Human.new
 
-    assert_equal(4, @player.attributes[AttributeNames::INT])
-    assert_equal(1, @player.attributes[AttributeNames::CHA])
+    assert_equal(4, @player.attributes[Attributes::Names::INT])
+    assert_equal(1, @player.attributes[Attributes::Names::CHA])
   end
 
   def test_player_has_torton_plus_base_attributes
     @player.life_form = Torton.new
 
-    assert_equal(3, @player.attributes[AttributeNames::CON])
+    assert_equal(3, @player.attributes[Attributes::Names::CON])
   end
 
   def test_player_can_retrieve_all_calculated_attributes
     @player.life_form = Human.new
 
     expected_attributes = {
-      AttributeNames::INT => 4,
-      AttributeNames::CHA => 1,
-      AttributeNames::DEX => 0,
-      AttributeNames::CON => 2,
-      AttributeNames::STR => 1,
-      AttributeNames::WIS => 0
+      Attributes::Names::INT => 4,
+      Attributes::Names::CHA => 1,
+      Attributes::Names::DEX => 0,
+      Attributes::Names::CON => 2,
+      Attributes::Names::STR => 1,
+      Attributes::Names::WIS => 0
     }
 
     expected_attributes.each do |attribute, value|

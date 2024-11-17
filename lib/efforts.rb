@@ -10,4 +10,12 @@ module Efforts
 
     ALL = [BASIC, WEAPONS_AND_TOOLS, GUNS, ENERGY_AND_MAGIC, ULTIMATE].freeze
   end
+
+  BASE = {
+    Names::BASIC => 4,
+    Names::WEAPONS_AND_TOOLS => 6,
+    Names::GUNS => 8,
+    Names::ENERGY_AND_MAGIC => 10,
+    Names::ULTIMATE => 12
+  }.freeze
 end

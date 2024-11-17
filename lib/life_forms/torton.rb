@@ -4,7 +4,7 @@ require_relative 'life_form'
 
 class Torton < LifeForm
   def attribute_mods
-    { AttributeNames::CON => 1 }
+    { Attributes::Names::CON => 1 }
   end
 
   def effort_mods

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'effort_names'
+require_relative 'efforts'
 
 # TODO: add back test to check stats are not above 6!
 class Player
@@ -17,14 +17,7 @@ class Player
   end
 
   def base_efforts
-    @base_efforts ||=
-      {
-        Efforts::Names::BASIC => 4,
-        Efforts::Names::WEAPONS_AND_TOOLS => 6,
-        Efforts::Names::GUNS => 8,
-        Efforts::Names::ENERGY_AND_MAGIC => 10,
-        Efforts::Names::ULTIMATE => 12
-      }
+    Efforts::BASE
   end
 
   def give_hero_coin
@@ -40,7 +33,7 @@ class Player
   end
 
   def attributes
-    AttributeNames::ALL.each_with_object({}) do |attribute_name, obj|
+    Attributes::Names::ALL.each_with_object({}) do |attribute_name, obj|
       obj[attribute_name] = calculate_attribute(attribute_name)
     end
   end
