@@ -132,7 +132,7 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_efforts
-    assert_equal(4, @player.base_efforts.basic)
+    assert_equal(4, @player.base_efforts[EffortNames::BASIC])
   end
 
   def test_player_has_gerblin_plus_base_efforts

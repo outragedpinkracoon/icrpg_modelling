@@ -5,7 +5,7 @@ require_relative 'effort_names'
 
 class Player
   attr_accessor :name, :world, :type, :story, :life_form
-  attr_reader :base_attributes, :base_efforts
+  attr_reader :base_attributes
 
   def initialize(name:, world:, life_form:, type:, story:, base_attributes:)
     @name = name
@@ -14,8 +14,18 @@ class Player
     @type = type
     @story = story
     @base_attributes = base_attributes
-    @base_efforts = BaseEfforts.new
     @hero_coin = false
+  end
+
+  def base_efforts
+    @base_efforts ||=
+      {
+        EffortNames::BASIC => 4,
+        EffortNames::WEAPONS_AND_TOOLS => 6,
+        EffortNames::GUNS => 8,
+        EffortNames::ENERGY_AND_MAGIC => 10,
+        EffortNames::ULTIMATE => 12
+      }
   end
 
   def give_hero_coin
@@ -67,10 +77,10 @@ class Player
   private
 
   def calculate_attribute(attribute_name)
-    @base_attributes[attribute_name] + (@life_form.attribute_mods[attribute_name] || 0)
+    base_attributes[attribute_name] + (@life_form.attribute_mods[attribute_name] || 0)
   end
 
   def calculate_effort(effort_name)
-    @base_efforts.send(effort_name) + (@life_form.effort_mods[effort_name] || 0)
+    base_efforts[effort_name] + (@life_form.effort_mods[effort_name] || 0)
   end
 end
