@@ -10,6 +10,6 @@ class GerblinTest < Minitest::Test
     gerblin = Gerblin.new
 
     assert_equal({ AttributeNames::DEX => 1 }, gerblin.attribute_mods)
-    assert_equal({ EffortNames::GUNS => 1 }, gerblin.effort_mods)
+    assert_equal({ Efforts::Names::GUNS => 1 }, gerblin.effort_mods)
   end
 end

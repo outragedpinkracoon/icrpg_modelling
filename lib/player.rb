@@ -19,11 +19,11 @@ class Player
   def base_efforts
     @base_efforts ||=
       {
-        EffortNames::BASIC => 4,
-        EffortNames::WEAPONS_AND_TOOLS => 6,
-        EffortNames::GUNS => 8,
-        EffortNames::ENERGY_AND_MAGIC => 10,
-        EffortNames::ULTIMATE => 12
+        Efforts::Names::BASIC => 4,
+        Efforts::Names::WEAPONS_AND_TOOLS => 6,
+        Efforts::Names::GUNS => 8,
+        Efforts::Names::ENERGY_AND_MAGIC => 10,
+        Efforts::Names::ULTIMATE => 12
       }
   end
 
@@ -46,7 +46,7 @@ class Player
   end
 
   def efforts
-    EffortNames::ALL.each_with_object({}) do |effort_name, obj|
+    Efforts::Names::ALL.each_with_object({}) do |effort_name, obj|
       obj[effort_name] = calculate_effort(effort_name)
     end
   end
@@ -56,10 +56,10 @@ class Player
   attr_reader :base_attributes
 
   def calculate_attribute(attribute_name)
-    base_attributes[attribute_name] + (@life_form.attribute_mods[attribute_name] || 0)
+    base_attributes[attribute_name] + (life_form.attribute_mods[attribute_name] || 0)
   end
 
   def calculate_effort(effort_name)
-    base_efforts[effort_name] + (@life_form.effort_mods[effort_name] || 0)
+    base_efforts[effort_name] + (life_form.effort_mods[effort_name] || 0)
   end
 end

@@ -10,6 +10,6 @@ class TortonTest < Minitest::Test
     torton = Torton.new
 
     assert_equal({ AttributeNames::CON => 1 }, torton.attribute_mods)
-    assert_equal({ EffortNames::ENERGY_AND_MAGIC => 1 }, torton.effort_mods)
+    assert_equal({ Efforts::Names::ENERGY_AND_MAGIC => 1 }, torton.effort_mods)
   end
 end

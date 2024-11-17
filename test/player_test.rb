@@ -127,30 +127,30 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_efforts
-    assert_equal(4, @player.base_efforts[EffortNames::BASIC])
+    assert_equal(4, @player.base_efforts[Efforts::Names::BASIC])
   end
 
   def test_player_has_gerblin_plus_base_efforts
     @player.life_form = Gerblin.new
 
-    assert_equal(9, @player.efforts[EffortNames::GUNS])
+    assert_equal(9, @player.efforts[Efforts::Names::GUNS])
   end
 
   def test_player_has_torton_plus_base_efforts
     @player.life_form = Torton.new
 
-    assert_equal(11, @player.efforts[EffortNames::ENERGY_AND_MAGIC])
+    assert_equal(11, @player.efforts[Efforts::Names::ENERGY_AND_MAGIC])
   end
 
   def test_player_can_retrieve_all_calculated_efforts
     @player.life_form = Torton.new
 
     expected_efforts = {
-      EffortNames::BASIC => 4,
-      EffortNames::WEAPONS_AND_TOOLS => 6,
-      EffortNames::GUNS => 8,
-      EffortNames::ENERGY_AND_MAGIC => 11,
-      EffortNames::ULTIMATE => 12
+      Efforts::Names::BASIC => 4,
+      Efforts::Names::WEAPONS_AND_TOOLS => 6,
+      Efforts::Names::GUNS => 8,
+      Efforts::Names::ENERGY_AND_MAGIC => 11,
+      Efforts::Names::ULTIMATE => 12
     }
 
     expected_efforts.each do |effort, value|

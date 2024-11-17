@@ -8,6 +8,6 @@ class Torton < LifeForm
   end
 
   def effort_mods
-    { EffortNames::ENERGY_AND_MAGIC => 1 }
+    { Efforts::Names::ENERGY_AND_MAGIC => 1 }
   end
 end
