@@ -2,7 +2,6 @@
 
 require_relative 'efforts'
 
-# TODO: add back test to check stats are not above 6!
 class Player
   attr_accessor :name, :world, :type, :story, :life_form
 
@@ -42,6 +41,12 @@ class Player
     Efforts::Names::ALL.each_with_object({}) do |effort_name, obj|
       obj[effort_name] = calculate_effort(effort_name)
     end
+  end
+
+  def valid
+    return true, [] if base_attributes.values.sum == 6
+
+    [false, 'Base attributes must equal 6']
   end
 
   private

@@ -157,5 +157,56 @@ class PlayerTest < Minitest::Test
       assert_equal(value, @player.efforts[effort])
     end
   end
+
+  def test_player_is_valid
+    assert(@player.valid[0])
+    assert_empty(@player.valid[1])
+  end
+
+  def test_player_is_invalid_when_attributes_are_higher_than_six
+    attributes = {
+      Attributes::Names::STR => 1,
+      Attributes::Names::DEX => 1,
+      Attributes::Names::CON => 2,
+      Attributes::Names::INT => 3,
+      Attributes::Names::WIS => 0,
+      Attributes::Names::CHA => 0
+    }
+
+    player = Player.new(
+      name: 'fred',
+      world: 'deans',
+      life_form: Human.new,
+      type: PlayerTypes::MAGE,
+      story: 'this is my story',
+      base_attributes: attributes
+    )
+
+    refute(player.valid[0])
+    assert_equal('Base attributes must equal 6', player.valid[1])
+  end
+
+  def test_player_is_invalid_when_attributes_are_lower_than_six
+    attributes = {
+      Attributes::Names::STR => 1,
+      Attributes::Names::DEX => 1,
+      Attributes::Names::CON => 2,
+      Attributes::Names::INT => 3,
+      Attributes::Names::WIS => 0,
+      Attributes::Names::CHA => 0
+    }
+
+    player = Player.new(
+      name: 'fred',
+      world: 'deans',
+      life_form: Human.new,
+      type: PlayerTypes::MAGE,
+      story: 'this is my story',
+      base_attributes: attributes
+    )
+
+    refute(player.valid[0])
+    assert_equal('Base attributes must equal 6', player.valid[1])
+  end
 end
 # rubocop:enable Metrics/ClassLength
