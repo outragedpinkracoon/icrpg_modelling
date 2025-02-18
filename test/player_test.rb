@@ -165,6 +165,10 @@ class PlayerTest < Minitest::Test
     end
   end
 
+  def test_defense
+    assert_equal(12, @player.defense)
+  end
+
   def test_hero_coin
     refute_predicate(@player, :hero_coin?)
     @player.give_hero_coin

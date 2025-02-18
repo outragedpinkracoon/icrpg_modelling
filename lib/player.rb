@@ -19,6 +19,11 @@ class Player
     @current_health = max_health
   end
 
+  # plus defense related loot
+  def defense
+    attributes[Attributes::Names::CON] + 10
+  end
+
   def take_damage(amount)
     return if amount.negative?
 
@@ -51,12 +56,14 @@ class Player
     @hero_coin
   end
 
+  # plus loot modifications
   def attributes
     Attributes::Names::ALL.each_with_object({}) do |attribute_name, obj|
       obj[attribute_name] = calculate_attribute(attribute_name)
     end
   end
 
+  # plus loot modifications
   def efforts
     Efforts::Names::ALL.each_with_object({}) do |effort_name, obj|
       obj[effort_name] = calculate_effort(effort_name)
