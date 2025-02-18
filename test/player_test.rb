@@ -27,7 +27,8 @@ class PlayerTest < Minitest::Test
       life_form: @life_form,
       type: PlayerTypes::MAGE,
       story: 'this is my story',
-      base_attributes: @attributes
+      base_attributes: @attributes,
+      max_health: 10
     )
   end
 
@@ -50,6 +51,32 @@ class PlayerTest < Minitest::Test
     @player.life_form = Elf.new
 
     assert_instance_of Elf, @player.life_form
+  end
+
+  def test_player_has_health
+    assert_equal 10, @player.max_health
+    @player.max_health = 20
+
+    assert_equal 20, @player.max_health
+  end
+
+  def test_player_can_take_damage
+    @player.take_damage(5)
+
+    assert_equal 5, @player.current_health
+  end
+
+  def test_player_cant_heal_above_max_health
+    @player.take_damage(4)
+    @player.heal(6)
+
+    assert_equal 10, @player.current_health
+  end
+
+  def test_player_cant_heal_negative
+    @player.heal(-1)
+
+    assert_equal 10, @player.current_health
   end
 
   def test_player_has_type

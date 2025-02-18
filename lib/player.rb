@@ -3,9 +3,9 @@
 require_relative 'efforts'
 
 class Player
-  attr_accessor :name, :world, :type, :story, :life_form
+  attr_accessor :name, :world, :type, :story, :life_form, :max_health, :current_health
 
-  def initialize(name:, world:, life_form:, type:, story:, base_attributes:)
+  def initialize(name:, world:, life_form:, type:, story:, base_attributes:, max_health: 10)
     @name = name
     @world = world
     @life_form = life_form
@@ -13,6 +13,26 @@ class Player
     @story = story
     @base_attributes = base_attributes
     @hero_coin = false
+    @max_health = max_health
+    @current_health = max_health
+  end
+
+  def take_damage(amount)
+    @current_health -= amount
+  end
+
+  def heal(amount)
+    return if amount.negative?
+
+    if @current_health + amount <= @max_health
+      @current_health += amount
+    else
+      @current_health = @max_health
+    end
+  end
+
+  def hearts
+    @max_health / 10.ceil
   end
 
   def base_efforts
