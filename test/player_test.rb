@@ -73,10 +73,32 @@ class PlayerTest < Minitest::Test
     assert_equal 10, @player.current_health
   end
 
+  def test_player_cant_take_negative_damage
+    @player.take_damage(-1)
+
+    assert_equal(10, @player.current_health)
+  end
+
+  def test_player_cant_take_damage_below_zero
+    @player.take_damage(11)
+
+    assert_equal 0, @player.current_health
+  end
+
   def test_player_cant_heal_negative
     @player.heal(-1)
 
     assert_equal 10, @player.current_health
+  end
+
+  def test_player_heart_count
+    assert_equal 1, @player.hearts
+    @player.max_health = 11
+
+    assert_equal 2, @player.hearts
+    @player.max_health = 5
+
+    assert_equal 1, @player.hearts
   end
 
   def test_player_has_type
