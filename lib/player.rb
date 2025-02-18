@@ -24,11 +24,7 @@ class Player
   def heal(amount)
     return if amount.negative?
 
-    if @current_health + amount <= @max_health
-      @current_health += amount
-    else
-      @current_health = @max_health
-    end
+    @current_health = [@current_health + amount, @max_health].min
   end
 
   def hearts
