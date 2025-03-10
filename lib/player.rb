@@ -89,14 +89,27 @@ class Player
 
   attr_reader :base_attributes, :equipment
 
+  # Calculate an attribute by summing base value, life form modifier, and equipment modifiers
+  # attribute_name is the name of the attribute to calculate
+  # base_attributes is a hash of base values for the attribute
+  # attribute_mods is the method to call on the life form to get the modifiers (Attributes::Names::ALL)
   def calculate_attribute(attribute_name)
     calculate_stat(attribute_name, base_attributes, :attribute_mods)
   end
 
+  # Calculate an effort by summing base value, life form modifier, and equipment modifiers
+  # effort_name is the name of the effort to calculate
+  # base_efforts is a hash of base values for the effort
+  # effort_mods is the method to call on the life form to get the modifiers (Efforts::Names::ALL)
   def calculate_effort(effort_name)
     calculate_stat(effort_name, base_efforts, :effort_mods)
   end
 
+  # Calculate a stat by summing base value, life form modifier, and equipment modifiers
+  # stat_name is the name of the stat to calculate
+  # base_values is a hash of base values for the stat
+  # mods_method is the method to call on the life form or equipment to get the modifiers
+  # (attribute_mods or effort_mods)
   def calculate_stat(stat_name, base_values, mods_method)
     base_value = base_values[stat_name]
     life_form_mod = life_form.send(mods_method)[stat_name] || 0
