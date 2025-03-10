@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../test_helper'
+require_relative '../test_setup'
 require_relative '../../lib/player'
 require_relative '../../lib/player_types'
 require_relative '../../lib/base_attributes'
