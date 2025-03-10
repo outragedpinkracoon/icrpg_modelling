@@ -67,14 +67,12 @@ class Player
     @equipment.delete(item)
   end
 
-  # plus loot modifications
   def attributes
     Attributes::Names::ALL.each_with_object({}) do |attribute_name, obj|
       obj[attribute_name] = calculate_attribute(attribute_name)
     end
   end
 
-  # plus loot modifications
   def efforts
     Efforts::Names::ALL.each_with_object({}) do |effort_name, obj|
       obj[effort_name] = calculate_effort(effort_name)
@@ -92,14 +90,18 @@ class Player
   attr_reader :base_attributes, :equipment
 
   def calculate_attribute(attribute_name)
-    base_attributes[attribute_name] +
-      (life_form.attribute_mods[attribute_name] || 0) +
-      equipment.sum { |item| item.attribute_mods[attribute_name] || 0 }
+    calculate_stat(attribute_name, base_attributes, :attribute_mods)
   end
 
   def calculate_effort(effort_name)
-    base_efforts[effort_name] +
-      (life_form.effort_mods[effort_name] || 0) +
-      equipment.sum { |item| item.effort_mods[effort_name] || 0 }
+    calculate_stat(effort_name, base_efforts, :effort_mods)
+  end
+
+  def calculate_stat(stat_name, base_values, mods_method)
+    base_value = base_values[stat_name]
+    life_form_mod = life_form.send(mods_method)[stat_name] || 0
+    equipment_mod = equipment.sum { |item| item.send(mods_method)[stat_name] || 0 }
+
+    base_value + life_form_mod + equipment_mod
   end
 end
