@@ -2,6 +2,7 @@
 
 require_relative 'efforts'
 require_relative 'health'
+require_relative 'equipment_manager'
 
 class Player
   attr_accessor :name, :world, :type, :story, :life_form
@@ -15,14 +16,13 @@ class Player
     @base_attributes = base_attributes
     @hero_coin = false
     @health = Health.new(max_health: max_health)
-    @equipment = []
+    @equipment_manager = EquipmentManager.new
   end
 
   # plus defense related loot
   def defense
     base_defense = attributes[Attributes::Names::CON] + 10
-    equipment_defense = equipment.sum { |item| item.defense_mod || 0 }
-    base_defense + equipment_defense
+    base_defense + @equipment_manager.defense_mod
   end
 
   def take_damage(amount)
@@ -66,11 +66,11 @@ class Player
   end
 
   def equip(item)
-    @equipment << item
+    @equipment_manager.equip(item)
   end
 
   def unequip(item)
-    @equipment.delete(item)
+    @equipment_manager.unequip(item)
   end
 
   def attributes
@@ -93,7 +93,7 @@ class Player
 
   private
 
-  attr_reader :base_attributes, :equipment
+  attr_reader :base_attributes
 
   def calculate_attribute(attribute_name)
     calculate_stat(attribute_name, base_attributes, :attribute_mods)
@@ -106,7 +106,7 @@ class Player
   def calculate_stat(stat_name, base_values, mods_method)
     base_value = base_values[stat_name]
     life_form_mod = life_form.send(mods_method)[stat_name] || 0
-    equipment_mod = equipment.sum { |item| item.send(mods_method)[stat_name] || 0 }
+    equipment_mod = @equipment_manager.send(mods_method)[stat_name] || 0
 
     base_value + life_form_mod + equipment_mod
   end
