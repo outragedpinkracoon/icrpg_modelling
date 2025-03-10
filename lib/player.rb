@@ -3,21 +3,30 @@
 require_relative 'efforts'
 require_relative 'health'
 require_relative 'equipment_manager'
+require_relative 'stats_calculator'
 
 class Player
-  attr_accessor :name, :world, :type, :story, :life_form
+  attr_accessor :name, :world, :type, :story
 
   def initialize(name:, world:, life_form:, type:, story:, base_attributes:, max_health: 10)
     @name = name
     @world = world
-    @life_form = life_form
     @type = type
     @story = story
     @base_attributes = base_attributes
     @hero_coin = false
     @health = Health.new(max_health: max_health)
     @equipment_manager = EquipmentManager.new
+    @life_form = life_form
+    @stats_calculator = create_stats_calculator
   end
+
+  def life_form=(new_life_form)
+    @life_form = new_life_form
+    @stats_calculator = create_stats_calculator
+  end
+
+  attr_reader :life_form
 
   # plus defense related loot
   def defense
@@ -74,15 +83,11 @@ class Player
   end
 
   def attributes
-    Attributes::Names::ALL.each_with_object({}) do |attribute_name, obj|
-      obj[attribute_name] = calculate_attribute(attribute_name)
-    end
+    @stats_calculator.calculate_attributes
   end
 
   def efforts
-    Efforts::Names::ALL.each_with_object({}) do |effort_name, obj|
-      obj[effort_name] = calculate_effort(effort_name)
-    end
+    @stats_calculator.calculate_efforts
   end
 
   def valid
@@ -95,19 +100,11 @@ class Player
 
   attr_reader :base_attributes
 
-  def calculate_attribute(attribute_name)
-    calculate_stat(attribute_name, base_attributes, :attribute_mods)
-  end
-
-  def calculate_effort(effort_name)
-    calculate_stat(effort_name, base_efforts, :effort_mods)
-  end
-
-  def calculate_stat(stat_name, base_values, mods_method)
-    base_value = base_values[stat_name]
-    life_form_mod = life_form.send(mods_method)[stat_name] || 0
-    equipment_mod = @equipment_manager.send(mods_method)[stat_name] || 0
-
-    base_value + life_form_mod + equipment_mod
+  def create_stats_calculator
+    StatsCalculator.new(
+      base_values: base_attributes,
+      life_form: @life_form,
+      equipment_manager: @equipment_manager
+    )
   end
 end
