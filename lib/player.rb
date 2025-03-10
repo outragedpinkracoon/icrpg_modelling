@@ -22,7 +22,9 @@ class Player
 
   # plus defense related loot
   def defense
-    attributes[Attributes::Names::CON] + 10
+    base_defense = attributes[Attributes::Names::CON] + 10
+    equipment_defense = equipment.sum { |item| item.defense_mod || 0 }
+    base_defense + equipment_defense
   end
 
   def take_damage(amount)

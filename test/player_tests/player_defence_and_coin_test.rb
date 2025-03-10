@@ -30,6 +30,41 @@ class PlayerDefenceAndCoinTest < Minitest::Test
     assert_equal(12, @player.defense)
   end
 
+  def test_defense_with_equipment
+    shield = Equipment.new(
+      name: 'Magic Shield',
+      description: 'A shield that increases defense',
+      defense_mod: 5
+    )
+
+    @player.equip(shield)
+
+    assert_equal(17, @player.defense)
+
+    @player.unequip(shield)
+
+    assert_equal(12, @player.defense)
+  end
+
+  def test_multiple_equipment_defense
+    shield = Equipment.new(
+      name: 'Magic Shield',
+      description: 'A shield that increases defense',
+      defense_mod: 5
+    )
+
+    armor = Equipment.new(
+      name: 'Magic Armor',
+      description: 'Armor that increases defense',
+      defense_mod: 3
+    )
+
+    @player.equip(shield)
+    @player.equip(armor)
+
+    assert_equal(20, @player.defense)
+  end
+
   def test_hero_coin
     refute_predicate(@player, :hero_coin?)
     @player.give_hero_coin
