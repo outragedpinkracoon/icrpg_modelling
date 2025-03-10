@@ -28,7 +28,6 @@ class Player
 
   attr_reader :life_form
 
-  # plus defense related loot
   def defense
     base_defense = attributes[Attributes::Names::CON] + 10
     base_defense + @equipment_manager.defense_mod

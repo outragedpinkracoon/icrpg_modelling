@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'test_setup'
-require_relative '../lib/stats_calculator'
-require_relative '../lib/equipment_manager'
-require_relative '../lib/life_forms/human'
-require_relative '../lib/equipment'
 
 class StatsCalculatorTest < Minitest::Test
   def setup
