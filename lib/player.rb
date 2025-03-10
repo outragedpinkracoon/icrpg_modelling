@@ -17,6 +17,7 @@ class Player
     @hero_coin = false
     @max_health = max_health
     @current_health = max_health
+    @equipment = []
   end
 
   # plus defense related loot
@@ -56,6 +57,14 @@ class Player
     @hero_coin
   end
 
+  def equip(item)
+    @equipment << item
+  end
+
+  def unequip(item)
+    @equipment.delete(item)
+  end
+
   # plus loot modifications
   def attributes
     Attributes::Names::ALL.each_with_object({}) do |attribute_name, obj|
@@ -78,13 +87,17 @@ class Player
 
   private
 
-  attr_reader :base_attributes
+  attr_reader :base_attributes, :equipment
 
   def calculate_attribute(attribute_name)
-    base_attributes[attribute_name] + (life_form.attribute_mods[attribute_name] || 0)
+    base_attributes[attribute_name] +
+      (life_form.attribute_mods[attribute_name] || 0) +
+      equipment.sum { |item| item.attribute_mods[attribute_name] || 0 }
   end
 
   def calculate_effort(effort_name)
-    base_efforts[effort_name] + (life_form.effort_mods[effort_name] || 0)
+    base_efforts[effort_name] +
+      (life_form.effort_mods[effort_name] || 0) +
+      equipment.sum { |item| item.effort_mods[effort_name] || 0 }
   end
 end
